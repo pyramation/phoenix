@@ -3,3 +3,5 @@ Simple project to combine Protovis, Google Maps API, and the GeoHash algorithm.
 Thanks to Dave Troy for geohash-js: https://github.com/davetroy/geohash-js
 Thanks to Stanford for Protovis: http://vis.stanford.edu/protovis/
 
+NOTE: You will need a Google account and a Google Maps API key for your own domain for this project to work! 
+
