@@ -36,10 +36,12 @@ function updateVisible() {
     var zoom = map.getZoom();
 
     var a, b, u, v;
-    a = 8; // max 11? this is the total number of chars of a geoHash string
-    b = 14; // could be 1 (or 0 theoretically) this is the lowest number of characters to match 
+    // zoom levels
+    a = 8;
+    b = 14;
+    // string matches
     u = 3;
-    v = 8;
+    v = 7;
 
     with (Math) {
          level = parseInt(u + (zoom-a) * (v-u)/(b-a));
