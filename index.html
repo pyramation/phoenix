@@ -23,16 +23,13 @@ var geoHashes = hashes();
 var visibleHash = new Array(); 
 var mapArray = new Array();
 
-
 var level = 4;
-
 
 var checkStr;
 function updateVisible() {
    delete visibleHash;
    visibleHash = new Array();
    
-
     var zoom = map.getZoom();
 
     var a, b, u, v;
@@ -160,36 +157,7 @@ if (GBrowserIsCompatible()) {
 </head>
    
 <body>
-<div id="header"> 
-      <a href="http://oakland.crimespotting.org/"> 
- Oakland Crimespotting
-  </a> 
-    </div> 
-    <div id="map"></div> 
-    <div id="legend"> 
-      <b>Key to map symbols</b><br> 
-      <script type="text/javascript+protovis"> 
- 
-/* Render a legend, grouping codes by category. */
-new pv.Panel().width(130).height(130)
-    .data(pv.nest(codes).key(function(d) d.category).entries())
-  .add(pv.Dot)
-    .data(function(d) d.values)
-    .left(12)
-    .top(function() this.index * 25 + 12)
-    .strokeStyle(function(d) colors[d.code].dark)
-    .fillStyle(function(d) colors[d.code].light)
-    .size(100)
-  .anchor("center").add(pv.Label)
-    .textStyle("white")
-    .text(function(d) d.code)
-  .proto.proto.anchor("right").add(pv.Label)
-    .text(function(d) d.name)
-  .root.render();
- 
-      </script> 
-    </div> 
-  
+<div id="map"></div> 
 <script type="text/javascript">
             document.body.onload = function () {
               GUnload();
