@@ -19,6 +19,21 @@
         <script type="text/javascript">
             //< ![CDATA[
 
+
+var data = contents['response'].photos;
+
+    var geoHashes = [];
+        $.each(data, function(i, c) {
+                var geoHash = encodeGeoHash(c.coord.lat, c.coord.lng);
+                if (geoHashes[geoHash]) {
+                    geoHashes[geoHash].push( {title:c.title, image:c.image, lat:c.coord.lat, lng:c.coord.lng, hash:geoHash } );
+                } else {
+                    var gNewArray = new Array();
+                     gNewArray.push( {title:c.title, image:c.image, lat:c.coord.lat, lng:c.coord.lng, hash:geoHash } );
+                     geoHashes[geoHash] = gNewArray;
+                }
+       });
+
         function createMarker(point,html) {
             var marker = new GMarker(point);
             GEvent.addListener(marker, "click", function() {
@@ -40,15 +55,19 @@ if (GBrowserIsCompatible()) {
     map.addControl(new GMapTypeControl());
     map.setCenter(new GLatLng(37.8715926,-122.2727470), 14);
 
-    $.each(contents['response'].photos, function(i,obj) { 
-
-
-            var point = new GLatLng( obj.coord.lat,obj.coord.lng);
-            var marker = createMarker(point,displayContent(obj));
-
-            map.addOverlay(marker); 
+    for(x in geoHashes) {
+            var content;
+            var point;
+            content = '<div style="height: 200px; overflow:scroll;">';
+            $.each(geoHashes[x], function(i,y) {
+                point = new GLatLng( y.lat,y.lng);
+                content += displayContent(y) + "<br>";
             });
-
+            content += '</div>';
+            var marker = createMarker(point,content);
+            map.addOverlay(marker); 
+            
+    }
 
 }
 
